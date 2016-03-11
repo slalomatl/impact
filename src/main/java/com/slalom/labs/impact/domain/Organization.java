@@ -1,9 +1,9 @@
 package com.slalom.labs.impact.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by ted on 3/10/16.
@@ -12,16 +12,22 @@ import javax.persistence.Id;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column (name = "organization_id")
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String name;
     private String presentedName;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization", orphanRemoval = true, cascade = {CascadeType.ALL})
+    private List<Team> teams;
+
     protected Organization() {}
 
-    public Organization(String name, String presentedName) {
+    public Organization(String name, String presentedName, List<Team> teams) {
         this.name = name;
         this.presentedName = presentedName;
+        this.teams = teams;
     }
 
     public String getId() {
@@ -46,5 +52,13 @@ public class Organization {
 
     public void setPresentedName(String presentedName) {
         this.presentedName = presentedName;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }
