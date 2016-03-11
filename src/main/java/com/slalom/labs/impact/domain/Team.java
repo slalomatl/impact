@@ -12,6 +12,7 @@ import java.util.List;
 public class Team {
 
     @Id
+    @Column (name = "team_id")
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
@@ -20,28 +21,17 @@ public class Team {
     private Organization organization;
     private String name;
     private String presentedName;
-//    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-//    private List<Endpoint> endpoints;
-//    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-//    private List<Contract> contracts;
+    @OneToMany(mappedBy = "team", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Service> services;
 
     protected Team() {}
 
-//    public Team(Organization organization, String name, String presentedName,
-//                List<Endpoint> endpoints, List<Contract> contracts) {
-//        this.organization = organization;
-//        this.name = name;
-//        this.presentedName = presentedName;
-//        this.endpoints = endpoints;
-//        this.contracts = contracts;
-//    }
 
-    public Team(Organization organization, String name, String presentedName) {
+    public Team(Organization organization, String name, String presentedName, List<Service> services) {
         this.organization = organization;
         this.name = name;
         this.presentedName = presentedName;
-//        this.endpoints = endpoints;
-//        this.contracts = contracts;
+        this.services = services;
     }
 
     public String getId() {
@@ -74,5 +64,13 @@ public class Team {
 
     public void setPresentedName(String presentedName) {
         this.presentedName = presentedName;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 }

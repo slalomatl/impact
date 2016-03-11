@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -56,9 +55,9 @@ public class ImpactApplication {
 
             // Save some teams
             teamRepository.save(new Team(orgRepository.findByName("slalom-internal").get(0),
-                    "atl-custom-dev", "Atlanta Custom Dev"));
+                    "atl-custom-dev", "Atlanta Custom Dev", null));
             teamRepository.save(new Team(orgRepository.findByName("slalom-internal").get(0),
-                    "atl-xsd", "Atlanta XSD"));
+                    "atl-xsd", "Atlanta XSD", null));
             // fetch all teams
             log.info("Teams found with findAll():");
             log.info("-----------------------------------");
