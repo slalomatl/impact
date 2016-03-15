@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.stream.Collectors;
 
 /**
- * Created by ted on 3/10/16.
+ * Created by Ted Hunter <t.hunt750@gmail.com> on 3/10/16.
  */
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -33,7 +33,7 @@ public class ImpactApplication {
     public CommandLineRunner demo(OrganizationRepository orgRepository, TeamRepository teamRepository) {
         return (args) -> {
             // Save some organizations
-            orgRepository.save(new Organization("slalom-internal", "Slalom Internal", null));
+            orgRepository.save(new Organization("slalom", "Slalom Consulting", null));
             orgRepository.save(new Organization("homedepot", "The Home Depot", null));
             orgRepository.save(new Organization("mckesson", "McKesson", null));
             orgRepository.save(new Organization("coke", "Coca Cola", null));
@@ -54,9 +54,9 @@ public class ImpactApplication {
 
 
             // Save some teams
-            teamRepository.save(new Team(orgRepository.findByName("slalom-internal").get(0),
+            teamRepository.save(new Team(orgRepository.findByName("slalom").get(0),
                     "atl-custom-dev", "Atlanta Custom Dev", null));
-            teamRepository.save(new Team(orgRepository.findByName("slalom-internal").get(0),
+            teamRepository.save(new Team(orgRepository.findByName("slalom").get(0),
                     "atl-xsd", "Atlanta XSD", null));
             // fetch all teams
             log.info("Teams found with findAll():");
@@ -75,7 +75,7 @@ public class ImpactApplication {
             // see teams in Slalom Internal
             log.info("Slalom's teams:");
             log.info("-----------------------------------");
-            orgRepository.findByName("slalom-internal")
+            orgRepository.findByName("slalom")
                     .stream()
                     .flatMap(l -> l.getTeams().stream())
                     .collect(Collectors.toList())

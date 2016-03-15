@@ -4,7 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by ted on 3/10/16.
@@ -36,19 +35,19 @@ public class Contract {
 
     protected Contract() {}
 
-    public Contract(Service consumer, Endpoint endpoint, Date dateCreated, Date dateLastEdited) {
-        this.service = consumer;
+    public Contract(Service service, Endpoint endpoint, Date dateCreated, Date dateLastEdited) {
+        this.service = service;
         this.dateCreated = dateCreated;
         this.dateLastEdited = dateLastEdited;
         this.endpoint = endpoint;
     }
 
-    public Service getConsumer() {
+    public Service getService() {
         return service;
     }
 
-    public void setConsumer(Service consumer) {
-        this.service = consumer;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public Date getDateCreated() {
