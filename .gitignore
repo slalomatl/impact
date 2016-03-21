@@ -58,9 +58,12 @@ build/Release
 
 # Dependency directory
 node_modules
+bower_components
+jspm_packages
 
 # Optional npm cache directory
 .npm
+npm-debug.log
 
 # Optional REPL history
 .node_repl_history
@@ -346,3 +349,4 @@ fabric.properties
 
 # Other
 *.notes
+dist/

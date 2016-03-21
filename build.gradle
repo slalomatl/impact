@@ -1,7 +1,4 @@
 buildscript {
-    ext {
-        keycloakVersion = '1.9.0.CR1'
-    }
     repositories {
         jcenter()
         maven {
@@ -10,18 +7,21 @@ buildscript {
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:0.5.6.RELEASE'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.8.RELEASE")
         classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.7'
-
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.12'
     }
 }
 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'application'
+apply plugin: 'spring-boot'
+//apply plugin: 'application'
 apply plugin: 'com.gorylenko.gradle-git-properties'
+apply plugin: 'com.moowork.node'
 
-mainClassName = 'com.slalom.labs.impact.ImpactApplication'
+//mainClassName = 'com.slalom.labs.impact.ImpactApplication'
 
 jar {
     baseName = 'impact'
@@ -46,7 +46,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-
 eclipse {
     classpath {
          containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
@@ -63,3 +62,16 @@ dependencyManagement {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
 }
+
+// TODO: exclude everything but /dist from /webapp
+//task clientJar(type: Jar) {
+//    appendix = 'client'
+//    from sourceSets.main.output
+//    exclude('src/main/webapp/jspm_packages')
+//}
+//task clientBoot(type: BootRepackage, dependsOn: clientJar) {
+//    withJarTask = clientJar
+//}
+
+assemble.dependsOn(npm_install, npm_run_build)
+clean.dependsOn(npm_run_clean)
