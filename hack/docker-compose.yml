@@ -1,0 +1,27 @@
+postgres_data:
+  image: postgres
+  volumes:
+  - /var/lib/postgresql/data
+  command: echo "Postgres data container initialized"
+postgres:
+  image: postgres
+  ports: 
+  - "5432:5432"
+  environment:
+  - POSTGRES_USER=impact
+  - POSTGRES_PASSWORD=impact
+  - POSTGRES_DB=impact
+  volumes_from:
+  - postgres_data
+impact:
+  image: impact
+  ports:
+  - "8080:8080"
+  environment:
+  - SPRING_PROFILES_ACTIVE=postgres
+  - DB_USERNAME=impact
+  - DB_PASSWORD=impact
+  - DB_URL=jdbc:postgresql://postgres:5432/impact
+  links:
+  - postgres
+  
