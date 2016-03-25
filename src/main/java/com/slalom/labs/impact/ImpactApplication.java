@@ -34,9 +34,9 @@ public class ImpactApplication {
         return (args) -> {
             // Save some organizations
             orgRepository.save(new Organization("slalom", "Slalom Consulting", null));
-            orgRepository.save(new Organization("homedepot", "The Home Depot", null));
-            orgRepository.save(new Organization("mckesson", "McKesson", null));
-            orgRepository.save(new Organization("coke", "Coca Cola", null));
+            orgRepository.save(new Organization("acme", "Acme Trading Co", null));
+            orgRepository.save(new Organization("maverick-space", "Maveric Space Federation", null));
+            orgRepository.save(new Organization("blackwell-insurance", "Blackwell Insurance Co", null));
 
             // fetch all orgs
             log.info("Organizations found with findAll():");

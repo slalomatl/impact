@@ -12,7 +12,6 @@ import java.util.List;
 public class Endpoint {
 
     @Id
-    @Column(name = "endpoint_id")
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
@@ -21,16 +20,20 @@ public class Endpoint {
     private Service service;
     @OneToMany(mappedBy = "endpoint", cascade = {CascadeType.ALL})
     private List<Contract> contracts;
+    @OneToMany(mappedBy = "endpoint", cascade = {CascadeType.ALL})
+    private List<Test> tests;
     private String path;
     private String description;
     private String notes;
 
     protected Endpoint() {}
 
-    public Endpoint(Service service, String path, List<Contract> contracts, String description, String notes) {
+    public Endpoint(Service service, String path, List<Contract> contracts,
+                    List<Test> tests,String description, String notes) {
         this.service = service;
         this.path = path;
         this.contracts = contracts;
+        this.tests = tests;
         this.description = description;
         this.notes = notes;
     }
@@ -41,6 +44,14 @@ public class Endpoint {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 
     public String getDescription() {

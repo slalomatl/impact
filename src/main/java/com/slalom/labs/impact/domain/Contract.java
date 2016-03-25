@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ted on 3/10/16.
@@ -12,7 +13,6 @@ import java.util.Date;
 public class Contract {
 
     @Id
-    @Column(name = "contract_id")
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
@@ -23,23 +23,29 @@ public class Contract {
     @JoinColumn(name = "endpoint_id")
     private Endpoint endpoint;
     @Basic(optional = false)
-    @Column(name = "date_created", insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     @Basic(optional = false)
-    @Column(name = "date_last_edited", insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateLastEdited;
-//    @OneToMany(mappedBy = "contract", orphanRemoval = true, cascade = CascadeType.ALL)
-//    private List<ContractImpl> contractImpls
+    @OneToMany(mappedBy = "contract", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<ContractRevision> revisions;
+    @OneToMany(mappedBy = "contract", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Webhook> webhooks;
 
     protected Contract() {}
 
-    public Contract(Service service, Endpoint endpoint, Date dateCreated, Date dateLastEdited) {
+    public Contract(Service service, Endpoint endpoint, Date dateCreated,
+                    Date dateLastEdited, List<ContractRevision> revisions,
+                    List<Webhook> webhooks) {
         this.service = service;
         this.dateCreated = dateCreated;
         this.dateLastEdited = dateLastEdited;
         this.endpoint = endpoint;
+        this.revisions = revisions;
+        this.webhooks = webhooks;
     }
 
     public Service getService() {
@@ -80,5 +86,21 @@ public class Contract {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<ContractRevision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<ContractRevision> revisions) {
+        this.revisions = revisions;
+    }
+
+    public List<Webhook> getWebhooks() {
+        return webhooks;
+    }
+
+    public void setWebhooks(List<Webhook> webhooks) {
+        this.webhooks = webhooks;
     }
 }

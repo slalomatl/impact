@@ -12,7 +12,6 @@ import java.util.List;
 public class Team {
 
     @Id
-    @Column (name = "team_id")
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
