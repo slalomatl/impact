@@ -5,7 +5,7 @@ postgres_data:
   command: echo "Postgres data container initialized"
 postgres:
   image: postgres
-  ports: 
+  ports:
   - "5432:5432"
   environment:
   - POSTGRES_USER=impact
@@ -14,7 +14,7 @@ postgres:
   volumes_from:
   - postgres_data
 impact:
-  image: impact
+  build: ../
   ports:
   - "8080:8080"
   environment:
@@ -24,4 +24,4 @@ impact:
   - DB_URL=jdbc:postgresql://postgres:5432/impact
   links:
   - postgres
-  
+
