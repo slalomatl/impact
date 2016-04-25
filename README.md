@@ -1,3 +1,61 @@
+# Impact
+
+### Consumer Driven Contracts
+
+---
+
+## Motivation
+
+Current Consumer Driven Contract (CDC) frameworks lack flexibility and feature richness that large organizations need to for successful adoption. Relationships between services rarely fit the idealized model required by these frameworks — API calls are often destructive or non-idempotent, tests often require startup/teardown operations. Our aim is to offer an enterprise grade CDC solution that works in the real world. 
+
+Consumer driven contracts capture the detailed relationships between services: as such, it makes sense for a CFC framework to offer insights into these relationships. As a secondary motivation, Impact should offer detailed insight into these relationships.
+
+---
+
+## High-Level Goals
+
+- Maximize usability early on
+    - build a functional web console fully capable of creating, managing, and testing contracts
+    - only after creating an MVP console should libraries be created
+    This ensures that there is always *some* way for a team to create contracts
+- Capture Everything
+    - a major value-add for teams will be providing detailed insights into how services interact on an organizational level
+- Strict adherence to the (Robustness Principle)[https://en.wikipedia.org/wiki/Robustness_principle]
+- Consumers must be explicit in what they expect and accept
+- Should offer startup/teardown options for testing contracts
+    - work with destructive/non-idempotent APIs
+- Flexible run environment
+- Flexible workflow
+	- handling test failures
+- Built with the entire organization in mind
+	- concept of teams and their interactions
+	- should be easy to use for both developers and project owners
+- Communicative
+	- webhooks
+	- email server integration
+	
+## Future Goals
+
+- extensible
+    - language/framework specific integrations
+- SaaS option
+- authentication integration
+- ecosystem
+	- integration with jenkins/travis/etc
+- control flows:
+	- CDC generated API keys — requiring a contract for API access
+    - consumer-driven vs producer-driven contracts
+
+---
+
+## Current Workflow
+
+Initially we would like to build out core API and a fully functional web console.
+Users should be able to create contracts, define acceptable requests and responses, and run tests within the console.
+This will allow teams to utilize Impact as soon as possible, without having to wait for an SDK that works with their stack.
+
+---
+
 ## Frontend Development:
 
 ### Set up the development environment:

@@ -21,7 +21,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 apply plugin: 'com.moowork.node'
 
-//mainClassName = 'com.slalom.labs.impact.ImpactApplication'
+mainClassName = 'com.slalom.labs.impact.ImpactApplication'
 
 jar {
     baseName = 'impact'
