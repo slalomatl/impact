@@ -8,7 +8,7 @@
 
 Current Consumer Driven Contract (CDC) frameworks lack flexibility and feature richness that large organizations need to for successful adoption. Relationships between services rarely fit the idealized model required by these frameworks — API calls are often destructive or non-idempotent, tests often require startup/teardown operations. Our aim is to offer an enterprise grade CDC solution that works in the real world. 
 
-Consumer driven contracts capture the detailed relationships between services: as such, it makes sense for a CFC framework to offer insights into these relationships. As a secondary motivation, Impact should offer detailed insight into these relationships.
+Consumer driven contracts capture the nuances of relationships between services. As a secondary motivation, Impact should offer detailed insight into these relationships.
 
 ---
 
