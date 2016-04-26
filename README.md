@@ -20,7 +20,7 @@ Consumer driven contracts capture the nuances of relationships between services.
     This ensures that there is always *some* way for a team to create contracts
 - Capture Everything
     - a major value-add for teams will be providing detailed insights into how services interact on an organizational level
-- Strict adherence to the (Robustness Principle)[https://en.wikipedia.org/wiki/Robustness_principle]
+- Strict adherence to the [Robustness Principle](https://en.wikipedia.org/wiki/Robustness_principle)
 - Consumers must be explicit in what they expect and accept
 - Should offer startup/teardown options for testing contracts
     - work with destructive/non-idempotent APIs
@@ -36,13 +36,13 @@ Consumer driven contracts capture the nuances of relationships between services.
 	
 ## Future Goals
 
-- extensible
+- Extensible
     - language/framework specific integrations
 - SaaS option
-- authentication integration
-- ecosystem
+- Authentication integration
+- Ecosystem
 	- integration with jenkins/travis/etc
-- control flows:
+- Control flows:
 	- CDC generated API keys — requiring a contract for API access
     - consumer-driven vs producer-driven contracts
 
